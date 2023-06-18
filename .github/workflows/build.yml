@@ -24,6 +24,6 @@ jobs:
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
         with:
-          context: ./debian
+          context: ./workspace
           push: true
-          tags: ghcr.io/${{ github.repository }}-development:latest
+          tags: ghcr.io/timeguarana/workspace:latest

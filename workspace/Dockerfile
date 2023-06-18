@@ -1,5 +1,10 @@
 FROM debian:bookworm-20230612-slim
 
+LABEL org.opencontainers.image.title="time-guarana/workspace" \
+      org.opencontainers.image.description="Base image for development environments" \
+      org.opencontainers.image.version="2023.1.0" \
+      org.opencontainers.image.authors="André <abs@emancipe.se>"
+
 ENV LANG   C.UTF-8
 ENV LC_ALL C.UTF-8
 ENV VISUAL vim
