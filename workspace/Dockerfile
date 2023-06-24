@@ -18,11 +18,26 @@ RUN gpg --dearmor -o /usr/share/keyrings/nodejs.gpg < /tmp/nodejs.gpg.key \
     && apt-get update -qq \
     && apt-get install --no-install-recommends -y nodejs \
     && corepack enable \
-    && corepack prepare pnpm@latest --activate \
-    && pnpm install-completion bash \
+    && corepack prepare pnpm@latest --activate
+
+ADD https://www.postgresql.org/media/keys/ACCC4CF8.asc /tmp/postgresql.gpg.key
+ADD postgresql.list /etc/apt/sources.list.d/postgresql.list
+RUN gpg --dearmor -o /usr/share/keyrings/postgresql.gpg < /tmp/postgresql.gpg.key \
+    && rm /tmp/postgresql.gpg.key \
+    && apt-get update -qq \
+    && apt-get install --no-install-recommends -y postgresql-client libpq-dev
+
+ADD https://packages.redis.io/gpg /tmp/redis.gpg.key
+ADD redis.list /etc/apt/sources.list.d/redis.list
+RUN gpg --dearmor -o /usr/share/keyrings/redis.gpg < /tmp/redis.gpg.key \
+    && rm /tmp/redis.gpg.key \
+    && apt-get update -qq \
+    && apt-get install --no-install-recommends -y redis-tools \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
 
 USER dev
+
+RUN pnpm install-completion bash
 
 ENTRYPOINT [ "sleep", "infinity" ]
