@@ -19,11 +19,11 @@ jobs:
             ghcr.io/timeguarana/workspace
           tags: |
             type=raw,value=latest,enable={{is_default_branch}}
-            type=raw,value=2023.1.5,enable={{is_default_branch}}
+            type=raw,value=2024.5.0,enable={{is_default_branch}}
           labels: |
             org.opencontainers.image.title=timeguarana/workspace
             org.opencontainers.image.description=Base image for development environments
-            org.opencontainers.image.version=2023.1.5
+            org.opencontainers.image.version=2024.5.0
 
       - name: Login to GitHub Docker Registry
         uses: docker/login-action@v3
